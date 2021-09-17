@@ -1,0 +1,127 @@
+#
+#  OpenMAX Video Encoder Element Properties
+#
+#   control-rate        : Bitrate control method
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Enum "GstOMXVideoEncControlRate" Default: 1, "variable"
+#                            (0): disable          - Disable
+#                            (1): variable         - Variable
+#                            (2): constant         - Constant
+#                            (3): variable-skip-frames - Variable Skip Frames
+#                            (4): constant-skip-frames - Constant Skip Frames
+#   bitrate             : Target bitrate
+#                         flags: readable, writable, changeable in NULL, READY, PAUSED or PLAYING state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 4000000 
+#   peak-bitrate        : Peak bitrate in variable control-rate
+# 			 The value must be >= bitrate
+# 			 (1.2*bitrate) is set by default(Default: 0)
+#                         flags: readable, writable, changeable in NULL, READY, PAUSED or PLAYING state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 0 
+#   quant-i-frames      : Quantization parameter for I-frames (0xffffffff=component default)
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 4294967295 
+#   quant-p-frames      : Quantization parameter for P-frames (0xffffffff=component default)
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 4294967295 
+#   quant-b-frames      : Quantization parameter for B-frames (0xffffffff=component default)
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 4294967295 
+#   iframeinterval      : Encoding Intra Frame occurance frequency
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 0 
+#   SliceIntraRefreshEnable: Enable Slice Intra Refresh while encoding
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Boolean. Default: false
+#   SliceIntraRefreshInterval: Set SliceIntraRefreshInterval
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 4294967295 Default: 60 
+#   bit-packetization   : Whether or not Packet size is based upon Number Of bits
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Boolean. Default: false
+#   vbv-size            : virtual buffer size = vbv-size * (bitrate/fps)
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 30 Default: 10 
+#   temporal-tradeoff   : Temporal Tradeoff value for encoder
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Enum "GstOmxVideoEncTemporalTradeoffType" Default: 0, "Do not drop frames"
+#                            (0): Do not drop frames - GST_OMX_VIDENC_DROP_NO_FRAMES
+#                            (1): Drop 1 in 5 frames - GST_OMX_VIDENC_DROP_1_IN_5_FRAMES
+#                            (2): Drop 1 in 3 frames - GST_OMX_VIDENC_DROP_1_IN_3_FRAMES
+#                            (3): Drop 1 in 2 frames - GST_OMX_VIDENC_DROP_1_IN_2_FRAMES
+#                            (4): Drop 2 in 3 frames - GST_OMX_VIDENC_DROP_2_IN_3_FRAMES
+#   EnableMVBufferMeta  : Enable Motion Vector Meta data for encoding
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Boolean. Default: false
+#   qp-range            : Qunatization range for P and I frame,
+# 			 Use string with values of Qunatization Range 
+# 			 in MinQpP-MaxQpP:MinQpI-MaxQpP:MinQpB-MaxQpB order, to set the property.
+#                         flags: readable, writable
+#                         String. Default: "-1,-1:-1,-1:-1,-1"
+#   MeasureEncoderLatency: Enable Measure Encoder latency Per Frame
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Boolean. Default: false
+#   EnableTwopassCBR    : Enable two pass CBR while encoding
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Boolean. Default: false
+#   preset-level        : HW preset level for encoder
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Enum "GstOMXVideoEncHwPreset" Default: 0, "UltraFastPreset"
+#                            (0): UltraFastPreset  - UltraFastPreset for high perf
+#                            (1): FastPreset       - FastPreset
+#                            (2): MediumPreset     - MediumPreset
+#                            (3): SlowPreset       - SlowPreset
+#   EnableStringentBitrate: Enable Stringent Bitrate Mode
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Boolean. Default: false
+#   insert-sps-pps      : Insert H.264 SPS, PPS at every IDR frame
+#                         flags: readable, writable
+#                         Boolean. Default: false
+#   num-B-Frames        : Number of B Frames between two reference frames (not recommended)
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Integer. Range: 0 - 2 Default: 0 
+#   slice-header-spacing: Slice Header Spacing number of macroblocks/bits in one packet
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Unsigned Long. Range: 0 - 18446744073709551615 Default: 0 
+#   profile             : Set profile for encode
+#                         flags: readable, writable, changeable only in NULL or READY state
+#                         Enum "GstOmxVideoEncProfileType" Default: 1, "baseline"
+#                            (1): baseline         - GST_OMX_VIDENC_BASELINE_PROFILE
+#                            (2): main             - GST_OMX_VIDENC_MAIN_PROFILE
+#                            (8): high             - GST_OMX_VIDENC_HIGH_PROFILE
+#   insert-aud          : Insert H.264 Access Unit Delimiter(AUD)
+#                         flags: readable, writable
+#                         Boolean. Default: false
+#   insert-vui          : Insert H.264 VUI(Video Usability Information) in SPS
+#                         flags: readable, writable
+#                         Boolean. Default: false
+#   cabac-entropy-coding: Set Entropy Coding Type CAVLC(FALSE) or CABAC(TRUE)
+#                         flags: readable, writable
+#                         Boolean. Default: false
+
+ENC_PARAMS="\
+control-rate=1 \
+bitrate=4000000 \
+peak-bitrate=0 \
+quant-i-frames=4294967295 \
+quant-p-frames=4294967295 \
+quant-b-frames=4294967295 \
+iframeinterval=0 \
+SliceIntraRefreshEnable=false \
+SliceIntraRefreshInterval=60 \
+bit-packetization=false \
+vbv-size=10 \
+temporal-tradeoff=0 \
+EnableMVBufferMeta=false \
+qp-range=\"0,51:0,51:0,51\" \
+MeasureEncoderLatency=false \
+EnableTwopassCBR=false \
+preset-level=0 \
+EnableStringentBitrate=false \
+insert-sps-pps=false \
+num-B-Frames=0 \
+slice-header-spacing=0 \
+profile=1 \
+insert-aud=false \
+insert-vui=false \
+cabac-entropy-coding=false \
+"

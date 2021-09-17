@@ -1,0 +1,140 @@
+#
+#  NVIDIA V4L2 Video Encoder Element Properties
+#
+#  bitrate             : Set bitrate for v4l2 encode
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 4000000 
+#  control-rate        : Set control rate for v4l2 encode
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Enum "GstV4l2VideoEncRateControlType" Default: 1, "constant_bitrate"
+#                           (0): variable_bitrate - GST_V4L2_VIDENC_VARIABLE_BITRATE
+#                           (1): constant_bitrate - GST_V4L2_VIDENC_CONSTANT_BITRATE
+#  iframeinterval      : Encoding Intra Frame occurance frequency
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 30 
+#  bufapi-version      : Set to use new buf API
+#                        flags: readable, writable
+#                        Boolean. Default: false
+#  peak-bitrate        : Peak bitrate in variable control-rate
+#			 The value must be >= bitrate
+#			 (1.2*bitrate) is set by default(Default: 0)
+#                        flags: readable, writable, changeable in NULL, READY, PAUSED or PLAYING state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 0 
+#  quant-i-frames      : Quantization parameter for I-frames (0xffffffff=component default),
+#			 use with ratecontrol-enable = 0
+#			 and preset-level = 0
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 4294967295 
+#  quant-p-frames      : Quantization parameter for P-frames (0xffffffff=component default),
+#			 use with ratecontrol-enable = 0
+#			 and preset-level = 0
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 4294967295 
+#  quant-b-frames      : Quantization parameter for B-frames (0xffffffff=component default),
+#			 use with ratecontrol-enable = 0
+#			 and preset-level = 0
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 4294967295 
+#  preset-level        : HW preset level for encoder
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Enum "GstV4L2VideoEncHwPreset" Default: 1, "UltraFastPreset"
+#                           (0): DisablePreset    - Disable HW-Preset
+#                           (1): UltraFastPreset  - UltraFastPreset for high perf
+#                           (2): FastPreset       - FastPreset
+#                           (3): MediumPreset     - MediumPreset
+#                           (4): SlowPreset       - SlowPreset
+#  qp-range            : Qunatization range for P, I and B frame,
+#			 Use string with values of Qunatization Range 
+#			 in MinQpP-MaxQpP:MinQpI-MaxQpI:MinQpB-MaxQpB order, to set the property.
+#                        flags: readable, writable
+#                        String. Default: null
+#  vbv-size            : virtual buffer size 
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 4000000 
+#  MeasureEncoderLatency: Enable Measure Encoder latency Per Frame
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Boolean. Default: false
+#  ratecontrol-enable  : Enable or Disable rate control mode
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Boolean. Default: true
+#  maxperf-enable      : Enable or Disable Max Performance mode
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Boolean. Default: false
+#  idrinterval         : Encoding IDR Frame occurance frequency
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 256 
+#  profile             : Set profile for v4l2 encode
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Enum "GstV4l2VideoEncProfileType" Default: 0, "Baseline"
+#                           (0): Baseline         - GST_V4L2_H264_VIDENC_BASELINE_PROFILE
+#                           (2): Main             - GST_V4L2_H264_VIDENC_MAIN_PROFILE
+#                           (4): High             - GST_V4L2_H264_VIDENC_HIGH_PROFILE
+#                           (7): High444          - GST_V4L2_H264_VIDENC_HIGH_444_PREDICTIVE
+#  insert-vui          : Insert H.264 VUI(Video Usability Information) in SPS
+#                        flags: readable, writable
+#                        Boolean. Default: false
+#  insert-sps-pps      : Insert H.264 SPS, PPS at every IDR frame
+#                        flags: readable, writable
+#                        Boolean. Default: false
+#  insert-aud          : Insert H.264 Access Unit Delimiter(AUD)
+#                        flags: readable, writable
+#                        Boolean. Default: false
+#  num-B-Frames        : Number of B Frames between two reference frames (not recommended)
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 2 Default: 0 
+#  disable-cabac       : Set Entropy Coding Type CAVLC(TRUE) or CABAC(FALSE)
+#                        flags: readable, writable
+#                        Boolean. Default: false
+#  bit-packetization   : Whether or not Packet size is based upon Number Of bits
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Boolean. Default: false
+#  SliceIntraRefreshInterval: Set SliceIntraRefreshInterval
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 4294967295 Default: 0 
+#  EnableTwopassCBR    : Enable two pass CBR while encoding
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Boolean. Default: false
+#  EnableMVBufferMeta  : Enable Motion Vector Meta data for encoding
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Boolean. Default: false
+#  slice-header-spacing: Slice Header Spacing number of macroblocks/bits in one packet
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer64. Range: 0 - 18446744073709551615 Default: 0 
+#  num-Ref-Frames      : Number of Reference Frames for encoder
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 8 Default: 1 
+#  poc-type            : Set Picture Order Count type value
+#                        flags: readable, writable, changeable only in NULL or READY state
+#                        Unsigned Integer. Range: 0 - 2 Default: 0 
+#
+
+ENC_PARAMS="\
+bitrate=4000000 \
+control-rate=1 \
+iframeinterval=30 \
+bufapi-version=false \
+peak-bitrate=0 \
+quant-i-frames=4294967295 \
+quant-p-frames=4294967295 \
+quant-b-frames=4294967295 \
+preset-level=1 \
+qp-range=\"0,51:0,51:0,51\" \
+vbv-size=4000000 \
+MeasureEncoderLatency=false \
+ratecontrol-enable=true \
+maxperf-enable=false \
+idrinterval=256 \
+profile=0 \
+insert-vui=false \
+insert-sps-pps=false \
+insert-aud=false \
+num-B-Frames=0 \
+disable-cabac=false \
+bit-packetization=false \
+SliceIntraRefreshInterval=0 \
+EnableTwopassCBR=false \
+EnableMVBufferMeta=false \
+slice-header-spacing=0 \
+num-Ref-Frames=1 \
+poc-type=0 \
+"
