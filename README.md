@@ -38,18 +38,27 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 | **-h** *height* | Capture height in pixel | 480 |
 | **-f** *fps* | Frame rate | 30 |
 | **-o** *output_file* | Encoder output file | output.mp4 | Only for arguscam_enc.sh  and v4l2cam_enc.sh |
-| **-a** *api* | Codec API: **v4l2** or **omx** | v4l2 | arguscam_encdec.sh and v4l2cam_encdec.sh support **v4l2** only. |
-| **-v** *video_codec* | **h264** or **h265** | h264 |
+| **-a** *api* | Codec API: **v4l2** for V4L2 / **omx** for OpenMAX | v4l2 | arguscam_encdec.sh and v4l2cam_encdec.sh support **v4l2** only. |
+| **-v** *video_codec* | **h264** for H.264 / **h265** for H.265 | h264 |
 | **-l** *log_directory* | Log output directory | ./logs |
 | **-p** *pipeline_dump_file* | Pipeline command dump file | pipeline.txt |
 | **-s** *shared_memory_socket* | Shared memory socket node | /tmp/foo | Only for arguscam_encdec.sh and v4l2cam_encdec.sh |
 | **-t** | Enables trace | (None) | Needs GstShark |
 
+### Encoder Parameters
+
+| Codec API | Codec | Configuration File |
+| --- | --- | --- |
+| V4L2 | H.264 | nvv4l2h264_params.txt |
+| V4L2 | H.265 | nvv4l2h265_params.txt |
+| OpenMAX | H.264 | omxh264_params.txt |
+| OpenMAX | H.265 | omxh265_params.txt |
+
 ### Notes
 - To stop the shell scripts, use Ctrl-C
 
 ## Debug Trace
-To use the trace functions, please install [GstShark](https://developer.ridgerun.com/wiki/index.php?title=GstShark) to your Jetson. You need to modify the **GSTSHARK_REPO** variable which specify the the GstShark installation path in the **gstplot.sh** script file. Use the gstplot.sh to generate trace charts.
+To use the trace functions, please install [GstShark](https://developer.ridgerun.com/wiki/index.php?title=GstShark) to your Jetson. You need to modify the **GSTSHARK_REPO** variable which specify the the GstShark installation path in the **gstplot.sh** script file. Use the gstplot.sh to generate trace charts from log data.
 
 ```
 ./gstplot.sh [CTF_path]
