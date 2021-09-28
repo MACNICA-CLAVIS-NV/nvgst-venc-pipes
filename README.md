@@ -45,4 +45,7 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 | **-s** *shared_memory_socket* | Shared memory socket node | /tmp/foo | Only for arguscam_encdec.sh and v4l2cam_encdec.sh |
 | **-t** | Enables trace | (None) |
 
+### Notes
+- To stop the shell scripts, use Ctrl-C
+
 ## Debug Trace
