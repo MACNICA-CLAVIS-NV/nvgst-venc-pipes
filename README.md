@@ -49,4 +49,10 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 - To stop the shell scripts, use Ctrl-C
 
 ## Debug Trace
-To use the trace functions, please install [GstShark](https://developer.ridgerun.com/wiki/index.php?title=GstShark) to your Jetson.
+To use the trace functions, please install [GstShark](https://developer.ridgerun.com/wiki/index.php?title=GstShark) to your Jetson. You need to modify the **GSTSHARK_REPO** variable which specify the the GstShark installation path in the **gstplot.sh** script file. Use the gstplot.sh to generate trace charts.
+
+```
+./gstplot.sh [CTF_path]
+```
+
+The deafult CTF path is **./logs**.
