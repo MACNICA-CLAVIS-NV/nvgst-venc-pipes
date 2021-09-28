@@ -46,7 +46,7 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 | **-t** | Enables trace | (None) | Needs GstShark |
 
 ### Encoder Parameters
-
+Edit the following configuration files to modify the encoder parameters.
 | Codec API | Codec | Configuration File |
 | --- | --- | --- |
 | V4L2 | H.264 | nvv4l2h264_params.txt |
