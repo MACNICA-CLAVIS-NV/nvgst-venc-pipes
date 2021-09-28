@@ -59,11 +59,11 @@ Edit the following configuration files to modify the encoder parameters.
 
 ## Examples
 
-**argus_enc.sh** without option generates the following GStreamer pipeline and executes it.
+**arguscam_enc.sh** without option generates the following GStreamer pipeline and executes it.
 ```
 gst-launch-1.0 -e nvarguscamerasrc sensor-id=0 ! "video/x-raw(memory:NVMM), width=640, height=480, format=NV12, framerate=(fraction)30/1" ! tee name=t t. ! queue ! nvv4l2h264enc bitrate=4000000 control-rate=1 iframeinterval=30 bufapi-version=false peak-bitrate=0 quant-i-frames=4294967295 quant-p-frames=4294967295 quant-b-frames=4294967295 preset-level=1 qp-range="0,51:0,51:0,51" vbv-size=4000000 MeasureEncoderLatency=false ratecontrol-enable=true maxperf-enable=false idrinterval=256 profile=0 insert-vui=false insert-sps-pps=false insert-aud=false num-B-Frames=0 disable-cabac=false bit-packetization=false SliceIntraRefreshInterval=0 EnableTwopassCBR=false EnableMVBufferMeta=false slice-header-spacing=0 num-Ref-Frames=1 poc-type=0 ! h264parse ! qtmux ! filesink location=output.mp4 t. ! queue ! nvegltransform ! nveglglessink
 ```
-**argus_encdec.sh** without option generates the following two GStreamer pipelines and executes them.
+**arguscam_encdec.sh** without option generates the following two GStreamer pipelines and executes them.
 ```
 gst-launch-1.0 -e nvarguscamerasrc sensor-id=0 ! "video/x-raw(memory:NVMM), width=640, height=480, format=NV12, framerate=(fraction)30/1" ! queue ! nvv4l2h264enc bitrate=4000000 control-rate=1 iframeinterval=30 bufapi-version=false peak-bitrate=0 quant-i-frames=4294967295 quant-p-frames=4294967295 quant-b-frames=4294967295 preset-level=1 qp-range="0,51:0,51:0,51" vbv-size=4000000 MeasureEncoderLatency=false ratecontrol-enable=true maxperf-enable=false idrinterval=256 profile=0 insert-vui=false insert-sps-pps=false insert-aud=false num-B-Frames=0 disable-cabac=false bit-packetization=false SliceIntraRefreshInterval=0 EnableTwopassCBR=false EnableMVBufferMeta=false slice-header-spacing=0 num-Ref-Frames=1 poc-type=0 ! h264parse config-interval=1 ! shmsink socket-path=/tmp/foo wait-for-connection=false shm-size=268435456
 ```
@@ -73,6 +73,13 @@ GST_SHARK_CTF_DISABLE=TRUE GST_DEBUG="*:0" GST_TRACERS="" gst-launch-1.0 -e shms
 **v4l2cam_enc.sh** without option generates the following GStreamer pipeline and executes it.
 ```
 gst-launch-1.0 -e v4l2src device=/dev/video0 ! "video/x-raw, width=(int)640, height=(int)480, framerate=(fraction)30/1" ! videoconvert ! "video/x-raw, format=(string)NV12" ! nvvidconv ! "video/x-raw(memory:NVMM), format=(string)NV12" ! tee name=t t. ! queue ! nvv4l2h264enc bitrate=4000000 control-rate=1 iframeinterval=30 bufapi-version=false peak-bitrate=0 quant-i-frames=4294967295 quant-p-frames=4294967295 quant-b-frames=4294967295 preset-level=1 qp-range="0,51:0,51:0,51" vbv-size=4000000 MeasureEncoderLatency=false ratecontrol-enable=true maxperf-enable=false idrinterval=256 profile=0 insert-vui=false insert-sps-pps=false insert-aud=false num-B-Frames=0 disable-cabac=false bit-packetization=false SliceIntraRefreshInterval=0 EnableTwopassCBR=false EnableMVBufferMeta=false slice-header-spacing=0 num-Ref-Frames=1 poc-type=0 ! h264parse ! qtmux ! filesink location=output.mp4 t. ! queue ! nvegltransform ! nveglglessink
+```
+**v4l2cam_encdec.sh** without option generates the following two GStreamer pipelines and executes them.
+```
+gst-launch-1.0 -e v4l2src device=/dev/video0 ! "video/x-raw, width=(int)640, height=(int)480, framerate=(fraction)30/1" ! videoconvert ! "video/x-raw, format=(string)NV12" ! nvvidconv ! "video/x-raw(memory:NVMM), format=(string)NV12" ! queue ! nvv4l2h264enc bitrate=4000000 control-rate=1 iframeinterval=30 bufapi-version=false peak-bitrate=0 quant-i-frames=4294967295 quant-p-frames=4294967295 quant-b-frames=4294967295 preset-level=1 qp-range="0,51:0,51:0,51" vbv-size=4000000 MeasureEncoderLatency=false ratecontrol-enable=true maxperf-enable=false idrinterval=256 profile=0 insert-vui=false insert-sps-pps=false insert-aud=false num-B-Frames=0 disable-cabac=false bit-packetization=false SliceIntraRefreshInterval=0 EnableTwopassCBR=false EnableMVBufferMeta=false slice-header-spacing=0 num-Ref-Frames=1 poc-type=0 ! h264parse config-interval=1 ! shmsink socket-path=/tmp/foo wait-for-connection=false shm-size=268435456
+```
+```
+GST_SHARK_CTF_DISABLE=TRUE GST_DEBUG="*:0" GST_TRACERS="" gst-launch-1.0 -e shmsrc socket-path=/tmp/foo is-live=true ! h264parse ! queue ! nvv4l2decoder ! nvegltransform ! nveglglessink
 ```
 
 ## Debug Trace
