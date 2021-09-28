@@ -30,7 +30,7 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 ## Usage
 
 ### Command Options (Common)
-
+The all sample scripts (arguscam_enc.sh, arguscam_encdec.sh, v4l2cam_enc.sh and v4l2cam_encdec.sh) accept the following command options.
 | Option | Description | Default Value | Notes |
 | --- | --- | --- | --- |
 | **-c** *camera_id* | Camera ID | 0 |
