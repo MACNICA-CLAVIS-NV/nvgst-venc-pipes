@@ -31,18 +31,18 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 
 ### Command Options (Common)
 
-| Option | Description | Default Value |
+| Option | Description | Default Value | Notes |
 | --- | --- | --- |
 | **-c** *camera_id* | Camera ID | 0 |
 | **-w** *width* | Capture width in pixel | 640 |
 | **-h** *height* | Capture height in pixel | 480 |
 | **-f** *fps* | Frame rate | 30 |
-| **-o** *output_file* | Encoder output file | output.mp4 |
-| **-a** *api* | Code API: **v4l2** or **omx** | v4l2 |
+| **-o** *output_file* | Encoder output file | output.mp4 | Only for arguscam_enc.sh  and v4l2cam_enc.sh |
+| **-a** *api* | Codec API: **v4l2** or **omx** | v4l2 |
 | **-v** *video_codec* | **h264** or **h265** | h264 |
 | **-l** *log_directory* | Log output directory | ./logs |
 | **-p** *pipeline_dump_file* | Pipeline command dump file | pipeline.txt |
-| **-s** *shared_memory_socket* | Shared memory socket node | /tmp/foo |
+| **-s** *shared_memory_socket* | Shared memory socket node | /tmp/foo | Only for arguscam_encdec.sh and v4l2cam_encdec.sh |
 | **-t** | Enables trace | (Disabled) |
 
 ## Debug Trace
