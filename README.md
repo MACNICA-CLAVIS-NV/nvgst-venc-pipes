@@ -43,9 +43,10 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 | **-l** *log_directory* | Log output directory | ./logs |
 | **-p** *pipeline_dump_file* | Pipeline command dump file | pipeline.txt |
 | **-s** *shared_memory_socket* | Shared memory socket node | /tmp/foo | Only for arguscam_encdec.sh and v4l2cam_encdec.sh |
-| **-t** | Enables trace | (None) |
+| **-t** | Enables trace | (None) | Needs GstShark |
 
 ### Notes
 - To stop the shell scripts, use Ctrl-C
 
 ## Debug Trace
+To use the trace functions, please install [GstShark](https://developer.ridgerun.com/wiki/index.php?title=GstShark) to your Jetson.
