@@ -57,6 +57,13 @@ Edit the following configuration files to modify the encoder parameters.
 ### Notes
 - To stop the shell scripts, use Ctrl-C
 
+## Examples
+
+**argus_enc.sh** without option generates the following GStreamer pipeline and executes it.
+```
+gst-launch-1.0 -e nvarguscamerasrc sensor-id=0 ! "video/x-raw(memory:NVMM), width=640, height=480, format=NV12, framerate=(fraction)30/1" ! tee name=t t. ! queue ! nvv4l2h264enc bitrate=4000000 control-rate=1 iframeinterval=30 bufapi-version=false peak-bitrate=0 quant-i-frames=4294967295 quant-p-frames=4294967295 quant-b-frames=4294967295 preset-level=1 qp-range="0,51:0,51:0,51" vbv-size=4000000 MeasureEncoderLatency=false ratecontrol-enable=true maxperf-enable=false idrinterval=256 profile=0 insert-vui=false insert-sps-pps=false insert-aud=false num-B-Frames=0 disable-cabac=false bit-packetization=false SliceIntraRefreshInterval=0 EnableTwopassCBR=false EnableMVBufferMeta=false slice-header-spacing=0 num-Ref-Frames=1 poc-type=0 ! h264parse ! qtmux ! filesink location=output.mp4 t. ! queue ! nvegltransform ! nveglglessink
+```
+
 ## Debug Trace
 To use the trace functions, please install [GstShark](https://developer.ridgerun.com/wiki/index.php?title=GstShark) to your Jetson. You need to modify the **GSTSHARK_REPO** variable which specify the the GstShark installation path in the **gstplot.sh** script file. Use the gstplot.sh to generate trace charts from log data.
 
