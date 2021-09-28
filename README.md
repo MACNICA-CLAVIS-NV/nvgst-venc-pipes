@@ -31,18 +31,18 @@ Sample Video Encoding GStreamer Pipelines for NVIDIA Jetson
 
 ### Command Options (Common)
 
-| Option                  | Description | Default Value |
-| ----------------------- | -------------------- | ---------- |
-| **-c** camera_id            |
-| **-w** width                |
-| **-h** height               |
-| **-f** fps                  |
-| **-o** output_file          |
-| -a api                  |
-| -v video_codec          |
-| -l log_directory        |
-| -p pipeline_dump_file   |
-| -s shared_memory_socket |
-| -t                      |
+| Option | Description | Default Value |
+| --- | --- | --- |
+| **-c** *camera_id* |
+| **-w** width |
+| **-h** height |
+| **-f** fps |
+| **-o** output_file |
+| **-a** api |
+| **-v** video_codec          |
+| **-l** log_directory        |
+| **-p** pipeline_dump_file   |
+| **-s** shared_memory_socket |
+| **-t** |
 
 ## Debug Trace
